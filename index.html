@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>메인 페이지</title>
+   <footer class="fixed-footer">
+  <p class="small tm-copyright-text">
+    Copyright &copy; <span class="tm-current-year">2025</span> CozyEun
+  </p>
+</footer>
+
+<style>
+  .fixed-footer {
+    position: fixed;   /* ✅ 화면에 고정 */
+    bottom: 0;         /* ✅ 화면의 맨 아래 */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: rgba(233, 233, 233, 0); /* 살짝 반투명한 배경 */
+    color: #fff;
+    font-size: 0.9rem;
+    z-index: 1000; /* 다른 요소 위에 표시 */
+  }
+</style>
+  <style>
+    /* ✅ 화면 전체를 가운데 정렬 */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #222, #444);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* ✅ 버튼 디자인 */
+    .main-btn {
+      padding: 20px 50px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      background-color: #ff5c5c;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 92, 92, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .main-btn:hover {
+      background-color: #ff3c3c;
+      transform: scale(1.05);
+    }
+
+    .main-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* ✅ 부드러운 배경 애니메이션 */
+    @keyframes bg-move {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    body {
+      background: linear-gradient(270deg, #1a1a1a, #333, #1a1a1a);
+      background-size: 600% 600%;
+      animation: bg-move 10s ease infinite;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ✅ 중앙 버튼 -->
+  <button class="main-btn" id="enterBtn">입장하기</button>
+
+  <!-- ✅ 배경 음악 -->
+  <audio id="bgMusic" src="music/background.mp3" autoplay loop></audio>
+
+  <!-- ✅ 클릭 사운드 -->
+  <audio id="clickSound" src="music/click.mp3"></audio>
+
+  <script>
+    const btn = document.getElementById('enterBtn');
+    const clickSound = document.getElementById('clickSound');
+    const bgMusic = document.getElementById('bgMusic');
+
+    // ✅ 버튼 클릭 시
+    btn.addEventListener('click', () => {
+      clickSound.currentTime = 0; // 클릭음 처음부터 재생
+      clickSound.play();
+
+      // 클릭음이 끝나면 페이지 이동 (약간의 지연)
+      setTimeout(() => {
+        window.location.href = 'sub.html';
+      }, 200);
+    });
+
+    // ✅ 일부 브라우저는 자동재생 제한 → 사용자 상호작용 없을 때는 mute로 시작
+    window.addEventListener('load', () => {
+      bgMusic.volume = 0.5; // 배경음악 볼륨 조절
+      const playPromise = bgMusic.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          bgMusic.muted = true;
+          bgMusic.play();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

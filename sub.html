@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>서브 페이지 팝업</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <script src="js/anime.min.js"></script>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #fdfdfd;
+      margin: 0;
+    }
+
+    .popup-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 0px;
+      width: 80vw;
+      height: 80vh;
+    }
+
+   .popup-btn {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-size: cover;
+  background-position: center;
+  transition: filter 0.3s ease;
+  cursor: pointer;
+}
+
+    .popup-btn:hover {
+        filter: brightness(80%);    
+    }
+
+    .popup-btn:active {
+      filter: brightness(0.8);
+    }
+
+    /* ✅ 메인페이지로 이동 버튼 */
+    .to-main {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        border: none;
+        padding: 10px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .to-main:hover {
+      background: rgba(255, 255, 255, 1);
+    }
+
+    /* ✅ 팝업 전체 배경 */
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    /* ✅ 팝업 본체 */
+    .popup {
+      background: white;
+      width: 60%;
+      max-width: 700px;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    .popup img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .popup h3 {
+      margin-bottom: 15px;
+    }
+
+    .popup p {
+      color: #555;
+    }
+
+    .close-btn, .back-btn {
+      position: absolute;
+      top: 15px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .close-btn { right: 20px; }
+    .back-btn { left: 20px; }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 50%;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 0.9rem;
+      color: #777;
+      background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+  <!-- ✅ 메인 페이지 이동 버튼 -->
+  <button class="to-main" onclick="window.location.href='index.html'">메인으로</button>
+
+  <div class="popup-buttons">
+    <button class="popup-btn" data-popup="1">첫번째</button>
+    <button class="popup-btn" data-popup="2">두번째</button>
+    <button class="popup-btn" data-popup="3">세번째</button>
+    <button class="popup-btn" data-popup="4">네번째</button>
+  </div>
+
+  <!-- ✅ 팝업들 -->
+  <div class="popup-overlay" id="popup-overlay">
+    <div class="popup" id="popup-1">
+      <button class="close-btn">뒤로가기</button>
+      <img src="img/gam.jpg" alt="이미지 1">
+      <h3>첫번째 팝업</h3>
+      <p>이건 첫 번째 팝업 내용입니다.</p>
+    </div>
+
+    <div class="popup" id="popup-2">
+      <button class="close-btn">뒤로가기</button>
+      <img src="img/gam.jpg" alt="이미지 2">
+      <h3>두번째 팝업</h3>
+      <p>이건 두 번째 팝업 내용입니다.</p>
+    </div>
+
+    <div class="popup" id="popup-3">
+      <button class="close-btn">뒤로가기</button>
+      <img src="img/gam.jpg" alt="이미지 3">
+      <h3>세번째 팝업</h3>
+      <p>이건 세 번째 팝업 내용입니다.</p>
+    </div>
+
+    <div class="popup" id="popup-4">
+      <button class="close-btn">뒤로가기</button>
+      <img src="img/gam.jpg" alt="이미지 4">
+      <h3>네번째 팝업</h3>
+      <p>이건 네 번째 팝업 내용입니다.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p class="small tm-copyright-text">
+      Copyright &copy; <span class="tm-current-year">2025</span> CozyEun
+    </p>
+  </footer>
+
+  <script>
+    const overlay = document.getElementById('popup-overlay');
+    const popups = document.querySelectorAll('.popup');
+    const buttons = document.querySelectorAll('.popup-btn');
+    const closeBtns = document.querySelectorAll('.close-btn');
+
+    // ✅ 팝업 열기
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById(`popup-${btn.dataset.popup}`);
+        overlay.style.display = 'flex';
+        popups.forEach(p => p.style.display = 'none');
+        target.style.display = 'block';
+
+        anime({
+          targets: target,
+          opacity: [0, 1],
+          scale: [0.8, 1],
+          duration: 400,
+          easing: 'easeOutQuad'
+        });
+      });
+    });
+
+    // ✅ 팝업 닫기
+    closeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const popup = btn.parentElement;
+        anime({
+          targets: popup,
+          opacity: [1, 0],
+          scale: [1, 0.8],
+          duration: 300,
+          easing: 'easeInQuad',
+          complete: () => {
+            overlay.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // ✅ 배경 클릭 시 닫기
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        anime({
+          targets: overlay.querySelector('.popup:not([style*="display: none"])'),
+          opacity: [1, 0],
+          scale: [1, 0.8],
+          duration: 300,
+          easing: 'easeInQuad',
+          complete: () => {
+            overlay.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
