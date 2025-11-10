@@ -21,17 +21,20 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
-      gap: 0px;
-      width: 80vw;
-      height: 80vh;
+       gap: 0px;
+        width: 100vw;              /* ✅ 폭을 화면의 70%로 제한 */
+        height: 100vh;
+        justify-content: center;  /* ✅ 가운데 정렬 */
+        align-items: center;
     }
 
    .popup-btn {
-  width: 100%;
+ width: 100%;
   height: 100%;
   border: none;
-  background-size: cover;
-  background-position: center;
+  background-size: cover;       /* 이미지를 꽉 채움 */
+  background-position: center;  /* 가운데 정렬 */
+  background-repeat: no-repeat;
   transition: filter 0.3s ease;
   cursor: pointer;
 }
@@ -41,7 +44,7 @@
     }
 
     .popup-btn:active {
-      filter: brightness(0.8);
+      filter: brightness(0.7);
     }
 
     /* ✅ 메인페이지로 이동 버튼 */
@@ -120,7 +123,7 @@
       padding: 10px 0;
       font-size: 0.9rem;
       color: #777;
-      background: #fafafa;
+      background: #fafafa00;
     }
   </style>
 </head>
@@ -129,11 +132,11 @@
   <button class="to-main" onclick="window.location.href='index.html'">메인으로</button>
 
   <div class="popup-buttons">
-    <button class="popup-btn" data-popup="1">첫번째</button>
-    <button class="popup-btn" data-popup="2">두번째</button>
-    <button class="popup-btn" data-popup="3">세번째</button>
-    <button class="popup-btn" data-popup="4">네번째</button>
-  </div>
+  <button class="popup-btn" data-popup="1" style="background-image: url('img/here.png');"></button>
+  <button class="popup-btn" data-popup="2" style="background-image: url('img/flow.png');"></button>
+  <button class="popup-btn" data-popup="3" style="background-image: url('img/loud.png');"></button>
+  <button class="popup-btn" data-popup="4" style="background-image: url('img/deap.png');"></button>
+</div>
 
   <!-- ✅ 팝업들 -->
   <div class="popup-overlay" id="popup-overlay">
@@ -231,4 +234,3 @@
   </script>
 </body>
 </html>
-
