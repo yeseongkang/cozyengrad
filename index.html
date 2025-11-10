@@ -10,7 +10,11 @@
   </p>
 </footer>
 
+
 <style>
+
+  
+
   .fixed-footer {
     position: fixed;   /* ✅ 화면에 고정 */
     bottom: 0;         /* ✅ 화면의 맨 아래 */
@@ -18,7 +22,7 @@
     width: 100%;
     text-align: center;
     padding: 10px 0;
-    background-color: rgba(233, 233, 233, 0); /* 살짝 반투명한 배경 */
+    background-color: rgba(255, 255, 255, 0); /* 살짝 반투명한 배경 */
     color: #fff;
     font-size: 0.9rem;
     z-index: 1000; /* 다른 요소 위에 표시 */
@@ -26,39 +30,47 @@
 </style>
   <style>
     /* ✅ 화면 전체를 가운데 정렬 */
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #222, #444);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
+    body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff00; /* 배경색 필요 시 */
+}
 
-    /* ✅ 버튼 디자인 */
-    .main-btn {
-      padding: 20px 50px;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: white;
-      background-color: #ff5c5c;
-      border: none;
-      border-radius: 40px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255, 92, 92, 0.4);
-      transition: all 0.3s ease;
-    }
+/* ✅ 메인 배경 이미지 설정 */
 
-    .main-btn:hover {
-      background-color: #ff3c3c;
-      transform: scale(1.05);
-    }
 
-    .main-btn:active {
-      transform: scale(0.95);
-    }
+.main-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 60vw;   /* 화면 너비의 50% (조절 가능) */
+  height: auto;  /* 비율 유지 */
+}
+
+.image-button img {
+  width: 100%;   /* 버튼 크기에 맞게 이미지 조정 */
+  height: auto;  /* 비율 유지 */
+  display: block;
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.image-button:hover img {
+  filter: brightness(0.9);
+  transform: scale(1.05);
+}
 
     /* ✅ 부드러운 배경 애니메이션 */
     @keyframes bg-move {
@@ -68,17 +80,27 @@
     }
 
     body {
-      background: linear-gradient(270deg, #1a1a1a, #333, #1a1a1a);
-      background-size: 600% 600%;
-      animation: bg-move 10s ease infinite;
+      background-image: url('img/backback.png'); /* 배경 이미지 경로 */
+      background-size: cover;      /* 화면에 꽉 채우기 (비율 유지) */
+      background-position: center; /* 가운데 정렬 */
+      background-repeat: no-repeat; /* 반복 없음 */
     }
   </style>
 </head>
 
-<body>
-  <!-- ✅ 중앙 버튼 -->
-  <button class="main-btn" id="enterBtn">입장하기</button>
 
+
+
+<body>
+  
+  
+
+  <!-- ✅ 중앙 버튼 -->
+   <div class="main-container">
+    <button class="image-button" onclick="location.href='sub.html'">
+      <img src="img/backletter.png" alt="Start Button">
+    </button>
+  </div>
   <!-- ✅ 배경 음악 -->
   <audio id="bgMusic" src="music/background.mp3" autoplay loop></audio>
 
