@@ -50,8 +50,8 @@
     /* ✅ 메인페이지로 이동 버튼 */
    .bottom-buttons {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 5px;
+    right: 5px;
     display: flex;
     gap: 10px; /* 버튼 사이 간격 */
     z-index: 1000;
@@ -129,7 +129,7 @@
     }
 
     .close-btn img {
-  width: 100px;     /* 🔹 버튼 크기 (이미지 크기 조절) */
+  width: 130px;     /* 🔹 버튼 크기 (이미지 크기 조절) */
   height: auto;    /* 비율 유지 */
   transition: transform 0.2s ease;
 }
@@ -138,7 +138,17 @@
   transform: scale(1.1); /* 🔹 살짝 확대 효과 */
 }
 
-    .close-btn { right: 20px; }
+    .close-btn { 
+      position: absolute;
+      top: 0;        /* 👈 위쪽에 딱 붙게 */
+      right: 0;      /* 👈 오른쪽에 딱 붙게 */
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px; /* 버튼이 너무 구석에 안 눌리는 걸 방지 */
+      font-size: 1.2rem;
+      color: #333;}
+    
     .back-btn { left: 20px; }
 
     footer {
@@ -281,4 +291,5 @@ overlay.addEventListener('click', (e) => {
   </script>
 </body>
 </html>
+
 
