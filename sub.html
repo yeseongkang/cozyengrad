@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
-
-  <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>서브 페이지 팝업</title>
+  <title>일상공론과소리</title>
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <script src="js/anime.min.js"></script>
   <style>
@@ -52,19 +48,33 @@
     }
 
     /* ✅ 메인페이지로 이동 버튼 */
-    .to-main {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: rgba(0, 0, 0, 0.8);
-        border: none;
-        padding: 10px 15px;
-        border-radius: 8px;
-        cursor: pointer;
-    }
-    .to-main:hover {
-      background: rgba(255, 255, 255, 1);
-    }
+   .bottom-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px; /* 버튼 사이 간격 */
+    z-index: 1000;
+  }
+
+  .bottom-buttons .img-btn {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .bottom-buttons .img-btn img {
+    display: block;
+    width: 250px; /* 버튼 이미지 너비 */
+    height: auto; /* 비율 유지 */
+    object-fit: contain;
+    transition: transform 0.2s ease;
+  }
+
+  .bottom-buttons .img-btn:hover img {
+    transform: scale(1.1); /* 살짝 확대 효과 */
+  }
 
     /* ✅ 팝업 전체 배경 */
     .popup-overlay {
@@ -80,11 +90,11 @@
 
     /* ✅ 팝업 본체 */
     .popup {
-      background: white;
-      width: 60%;
-      max-width: 700px;
-      padding: 30px;
-      border-radius: 15px;
+      background: rgba(255, 255, 255, 0);
+      width: 80%;
+      max-width: max-content;
+      padding: 0px;
+      
       text-align: center;
       position: relative;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
@@ -107,14 +117,25 @@
     }
 
     .close-btn, .back-btn {
-      position: absolute;
-      top: 15px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1.2rem;
-      color: #333;
+         position: absolute;
+          top: 15px;        /* 위쪽 여백 */
+          right: 15px;      /* 오른쪽 여백 */
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          z-index: 10;      /* 다른 요소 위에 보이도록 */
     }
+
+    .close-btn img {
+  width: 70px;     /* 🔹 버튼 크기 (이미지 크기 조절) */
+  height: auto;    /* 비율 유지 */
+  transition: transform 0.2s ease;
+}
+
+.close-btn:hover img {
+  transform: scale(1.1); /* 🔹 살짝 확대 효과 */
+}
 
     .close-btn { right: 20px; }
     .back-btn { left: 20px; }
@@ -133,109 +154,129 @@
 </head>
 <body>
   <!-- ✅ 메인 페이지 이동 버튼 -->
-  <button class="to-main" onclick="window.location.href='index.html'">메인으로</button>
+  <div class="bottom-buttons">
+  <button class="img-btn" onclick="window.location.href='index.html'">
+    <img src="img/mainbb.png" alt="메인으로">
+  </button>
+
+</div>
 
   <div class="popup-buttons">
   <button class="popup-btn" data-popup="1" style="background-image: url('img/here.png');"></button>
   <button class="popup-btn" data-popup="2" style="background-image: url('img/flow.png');"></button>
   <button class="popup-btn" data-popup="3" style="background-image: url('img/loud.png');"></button>
-  <button class="popup-btn" data-popup="4" style="background-image: url('img/deap.png');"></button>
+  <button class="popup-btn" data-popup="4" style="background-image: url('img/more.png');"></button>
 </div>
 
   <!-- ✅ 팝업들 -->
   <div class="popup-overlay" id="popup-overlay">
     <div class="popup" id="popup-1">
-      <button class="close-btn">뒤로가기</button>
-      <img src="img/gam.jpg" alt="이미지 1">
-      <h3>첫번째 팝업</h3>
-      <p>이건 첫 번째 팝업 내용입니다.</p>
+      <button class="close-btn"><img src="img/backbb.png"></button>
+      <img src="img/citi.png" alt="이미지 1">
     </div>
 
     <div class="popup" id="popup-2">
-      <button class="close-btn">뒤로가기</button>
-      <img src="img/gam.jpg" alt="이미지 2">
-      <h3>두번째 팝업</h3>
-      <p>이건 두 번째 팝업 내용입니다.</p>
+      <button class="close-btn"><img src="img/backbb.png"></button>
+      <img src="img/flowflow.png" alt="이미지 2">
     </div>
 
     <div class="popup" id="popup-3">
-      <button class="close-btn">뒤로가기</button>
-      <img src="img/gam.jpg" alt="이미지 3">
-      <h3>세번째 팝업</h3>
-      <p>이건 세 번째 팝업 내용입니다.</p>
+      <button class="close-btn"><img src="img/backbb.png"></button>
+      <img src="img/gong.png" alt="이미지 3">
     </div>
 
     <div class="popup" id="popup-4">
-      <button class="close-btn">뒤로가기</button>
-      <img src="img/gam.jpg" alt="이미지 4">
-      <h3>네번째 팝업</h3>
-      <p>이건 네 번째 팝업 내용입니다.</p>
+      <button class="close-btn"><img src="img/backbb.png"></button>
+      <img src="img/more.png" alt="이미지 4">
     </div>
   </div>
 
-  <footer>
-    <p class="small tm-copyright-text">
-      Copyright &copy; <span class="tm-current-year">2025</span> CozyEun
-    </p>
-  </footer>
+  <audio id="popup-audio"></audio>
+
+  
 
   <script>
     const overlay = document.getElementById('popup-overlay');
     const popups = document.querySelectorAll('.popup');
     const buttons = document.querySelectorAll('.popup-btn');
     const closeBtns = document.querySelectorAll('.close-btn');
+    const audio = document.getElementById('popup-audio');
+
+
+    const popupMusic = {
+      1: 'music/song1.mp3',
+      2: 'music/song2.mp3',
+      3: 'music/song3.mp3',
+      4: 'music/song4.mp3'
+    };
+
 
     // ✅ 팝업 열기
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = document.getElementById(`popup-${btn.dataset.popup}`);
-        overlay.style.display = 'flex';
-        popups.forEach(p => p.style.display = 'none');
-        target.style.display = 'block';
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const index = btn.dataset.popup;
+    const target = document.getElementById(`popup-${index}`);
+    overlay.style.display = 'flex';
+    popups.forEach(p => p.style.display = 'none');
+    target.style.display = 'block';
 
-        anime({
-          targets: target,
-          opacity: [0, 1],
-          scale: [0.8, 1],
-          duration: 400,
-          easing: 'easeOutQuad'
-        });
-      });
+    anime({
+      targets: target,
+      opacity: [0, 1],
+      scale: [0.8, 1],
+      duration: 400,
+      easing: 'easeOutQuad'
     });
 
-    // ✅ 팝업 닫기
-    closeBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const popup = btn.parentElement;
-        anime({
-          targets: popup,
-          opacity: [1, 0],
-          scale: [1, 0.8],
-          duration: 300,
-          easing: 'easeInQuad',
-          complete: () => {
-            overlay.style.display = 'none';
-          }
-        });
-      });
-    });
+    // ✅ 팝업별 음악 재생
+    audio.src = popupMusic[index]; // 해당 팝업 음악 불러오기
+    audio.currentTime = 0;
+    audio.play().catch(err => console.log('자동재생이 차단되었습니다:', err));
+  });
+});
 
-    // ✅ 배경 클릭 시 닫기
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) {
-        anime({
-          targets: overlay.querySelector('.popup:not([style*="display: none"])'),
-          opacity: [1, 0],
-          scale: [1, 0.8],
-          duration: 300,
-          easing: 'easeInQuad',
-          complete: () => {
-            overlay.style.display = 'none';
-          }
-        });
+
+   closeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const popup = btn.parentElement;
+
+    anime({
+      targets: popup,
+      opacity: [1, 0],
+      scale: [1, 0.8],
+      duration: 300,
+      easing: 'easeInQuad',
+      complete: () => {
+        overlay.style.display = 'none';
+
+        // 🎵 노래 멈추기
+        audio.pause();
+        audio.currentTime = 0;
       }
+    });
+  });
+});
+    // ✅ 배경 클릭 시 닫기
+overlay.addEventListener('click', (e) => {
+  if (e.target === overlay) {
+    const openPopup = overlay.querySelector('.popup:not([style*="display: none"])');
+
+    anime({
+      targets: openPopup,
+      opacity: [1, 0],
+      scale: [1, 0.8],
+      duration: 300,
+      easing: 'easeInQuad',
+      complete: () => {
+        overlay.style.display = 'none';
+
+        // 🎵 배경 클릭으로 닫힐 때도 노래 멈춤
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    });
+  }
     });
   </script>
 </body>
 </html>
-
