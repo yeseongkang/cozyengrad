@@ -17,195 +17,157 @@
       margin: 0;
     }
 
+    /* 팝업 버튼 그리드 */
     .popup-buttons {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
-       gap: 0px;
-        width: 100vw;              /* ✅ 폭을 화면의 70%로 제한 */
-        height: 100vh;
-        justify-content: center;  /* ✅ 가운데 정렬 */
-        align-items: center;
+      gap: 0;
+      width: 100vw;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
     }
 
-   .popup-btn {
- width: 100%;
-  height: 100%;
-  border: none;
-  background-size: cover;       /* 이미지를 꽉 채움 */
-  background-position: center;  /* 가운데 정렬 */
-  background-repeat: no-repeat;
-  transition: filter 0.3s ease;
-  cursor: pointer;
-}
+    .popup-btn {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      cursor: pointer;
+      transition: filter 0.3s ease;
+    }
 
     .popup-btn:hover {
-        filter: brightness(80%);    
+      filter: brightness(80%);
     }
 
     .popup-btn:active {
-      filter: brightness(0.7);
+      filter: brightness(70%);
     }
 
-    /* ✅ 메인페이지로 이동 버튼 */
-   .bottom-buttons {
-    position: fixed;
-    bottom: 0px;
-    right: 0px;
-    display: flex;
-    gap: 10px; /* 버튼 사이 간격 */
-    z-index: 1000;
-  }
+    /* 하단 버튼 */
+    .bottom-buttons {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+    }
 
-  .bottom-buttons .img-btn {
-    border: none;
-    background: none;
-    padding: 0;
-    cursor: pointer;
-  }
+    .bottom-buttons .img-btn {
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+    }
 
-  .bottom-buttons .img-btn img {
-    display: block;
-    width: 100px; /* 버튼 이미지 너비 */
-    height: auto; /* 비율 유지 */
-    object-fit: contain;
-    transition: transform 0.2s ease;
-  }
+    .bottom-buttons .img-btn img {
+      display: block;
+      width: 100px;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+    }
 
-  .bottom-buttons .img-btn:hover img {
-    transform: scale(1.1); /* 살짝 확대 효과 */
-  }
+    .bottom-buttons .img-btn:hover img {
+      transform: scale(1.1);
+    }
 
-    /* ✅ 팝업 전체 배경 */
+    /* 팝업 전체 */
     .popup-overlay {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0,0,0,0.5);
       display: none;
       justify-content: center;
       align-items: center;
       z-index: 999;
     }
 
-    /* ✅ 팝업 본체 */
     .popup {
-      background: rgba(255, 255, 255, 0);
-      width: 90%;
-      max-width: max-content;
-      padding: 0px;
-      
-      text-align: center;
+      background: rgba(255,255,255,0);
+      width: 80%;
+      max-width: 800px;
+      padding: 0;
       position: relative;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
       opacity: 0;
       transform: scale(0.8);
     }
 
     .popup img {
       width: 100%;
-      height: 100%;
-      object-fit: cover; /* 이미지가 팝업 크기에 꽉 차되 잘릴 수 있음 */
+      height: auto;
+      object-fit: contain;
       border-radius: 15px;
     }
 
-    .popup h3 {
-      margin-bottom: 15px;
-    }
-
-    .popup p {
-      color: #555;
-    }
-
-    .close-btn, .back-btn {
-         position: absolute;
-          top: 0px;        /* 위쪽 여백 */
-          right: 0px;      /* 오른쪽 여백 */
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 0;
-          z-index: 10;      /* 다른 요소 위에 보이도록 */
+    /* 뒤로가기 버튼 */
+    .close-btn {
+      position: absolute;
+      top: auto;
+      right: 0;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      z-index: 10;
     }
 
     .close-btn img {
-      width: 100px;     /* 🔹 버튼 크기 (이미지 크기 조절) */
-      height: auto;    /* 비율 유지 */
+      width: 80px;
+      height: auto;
       display: block;
-  transition: transform 0.2s ease;
-}
+      transition: transform 0.2s ease;
+    }
 
-.close-btn:hover img {
-  transform: scale(1.1); /* 🔹 살짝 확대 효과 */
-}
-
-    .close-btn { 
-     position: absolute;
-      top: 0;       /* 위쪽 모서리에 딱 붙음 */
-      right: 0;     /* 오른쪽 모서리에 딱 붙음 */
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;   /* 버튼 안쪽 여백 제거 */
-      font-size: 1.2rem;
-      color: #333;}
-    
-    .back-btn { left: 20px; }
-
-    footer {
-      position: fixed;
-      bottom: 0;
-      width: 50%;
-      text-align: center;
-      padding: 10px 0;
-      font-size: 0.9rem;
-      color: #777;
-      background: #fafafa00;
+    .close-btn img:hover {
+      transform: scale(1.1);
     }
   </style>
 </head>
 <body>
-  <!-- ✅ 메인 페이지 이동 버튼 -->
+  <!-- 하단 버튼 -->
   <div class="bottom-buttons">
-  <button class="img-btn" onclick="window.location.href='index.html'">
-    <img src="img/mainbb.png" alt="메인으로">
-  </button>
+    <button class="img-btn" id="to-main" onclick="window.location.href='index.html'">
+      <img src="img/mainbb.png" alt="메인으로">
+    </button>
+    
+  </div>
 
-</div>
-
+  <!-- 팝업 버튼들 -->
   <div class="popup-buttons">
-  <button class="popup-btn" data-popup="1" style="background-image: url('img/here.png');"></button>
-  <button class="popup-btn" data-popup="2" style="background-image: url('img/flow.png');"></button>
-  <button class="popup-btn" data-popup="3" style="background-image: url('img/loud.png');"></button>
-  <button class="popup-btn" data-popup="4" style="background-image: url('img/more.png');"></button>
-</div>
+    <button class="popup-btn" data-popup="1" style="background-image: url('img/here.png');"></button>
+    <button class="popup-btn" data-popup="2" style="background-image: url('img/flow.png');"></button>
+    <button class="popup-btn" data-popup="3" style="background-image: url('img/loud.png');"></button>
+    <button class="popup-btn" data-popup="4" style="background-image: url('img/more.png');"></button>
+  </div>
 
-  <!-- ✅ 팝업들 -->
+  <!-- 팝업들 -->
   <div class="popup-overlay" id="popup-overlay">
     <div class="popup" id="popup-1">
-      <button class="close-btn"><img src="img/backbb.png"></button>
-      <img src="img/citi.png" alt="이미지 1">
+      <button class="close-btn"><img src="img/backbb.png" alt="뒤로가기"></button>
+      <img src="img/citi.png" alt="팝업1 이미지">
     </div>
-
     <div class="popup" id="popup-2">
-      <button class="close-btn"><img src="img/backbb.png"></button>
-      <img src="img/flowflow.png" alt="이미지 2">
+      <button class="close-btn"><img src="img/backbb.png" alt="뒤로가기"></button>
+      <img src="img/flowflow.png" alt="팝업2 이미지">
     </div>
-
     <div class="popup" id="popup-3">
-      <button class="close-btn"><img src="img/backbb.png"></button>
-      <img src="img/gong.png" alt="이미지 3">
+      <button class="close-btn"><img src="img/backbb.png" alt="뒤로가기"></button>
+      <img src="img/gong.png" alt="팝업3 이미지">
     </div>
-
     <div class="popup" id="popup-4">
-      <button class="close-btn"><img src="img/backbb.png"></button>
-      <img src="img/more.png" alt="이미지 4">
+      <button class="close-btn"><img src="img/backbb.png" alt="뒤로가기"></button>
+      <img src="img/more.png" alt="팝업4 이미지">
     </div>
   </div>
 
   <audio id="popup-audio"></audio>
-
-  
 
   <script>
     const overlay = document.getElementById('popup-overlay');
@@ -213,7 +175,7 @@
     const buttons = document.querySelectorAll('.popup-btn');
     const closeBtns = document.querySelectorAll('.close-btn');
     const audio = document.getElementById('popup-audio');
-
+    const bottomButtons = document.querySelector('.bottom-buttons');
 
     const popupMusic = {
       1: 'music/song1.mp3',
@@ -222,8 +184,9 @@
       4: 'music/song4.mp3'
     };
 
+    const toMainBtn = document.getElementById('to-main');
 
-    // ✅ 팝업 열기
+// 팝업 열기
 buttons.forEach(btn => {
   btn.addEventListener('click', () => {
     const index = btn.dataset.popup;
@@ -232,70 +195,66 @@ buttons.forEach(btn => {
     popups.forEach(p => p.style.display = 'none');
     target.style.display = 'block';
 
+    // 🔹 처음으로 버튼만 숨김
+    toMainBtn.style.display = 'none';
+
     anime({
       targets: target,
-      opacity: [0, 1],
-      scale: [0.8, 1],
+      opacity: [0,1],
+      scale: [0.8,1],
       duration: 400,
       easing: 'easeOutQuad'
     });
 
-    // ✅ 팝업별 음악 재생
-    audio.src = popupMusic[index]; // 해당 팝업 음악 불러오기
+    // 팝업 음악 재생
+    audio.src = popupMusic[index];
     audio.currentTime = 0;
-    audio.play().catch(err => console.log('자동재생이 차단되었습니다:', err));
+    audio.play().catch(err => console.log('자동재생 차단:', err));
   });
 });
 
-
-   closeBtns.forEach(btn => {
+// 팝업 닫기
+closeBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     const popup = btn.parentElement;
-
     anime({
       targets: popup,
-      opacity: [1, 0],
-      scale: [1, 0.8],
+      opacity: [1,0],
+      scale: [1,0.8],
       duration: 300,
       easing: 'easeInQuad',
       complete: () => {
         overlay.style.display = 'none';
-
-        // 🎵 노래 멈추기
         audio.pause();
         audio.currentTime = 0;
+
+        // 🔹 닫히면 버튼 다시 보이게
+        toMainBtn.style.display = 'block';
       }
     });
   });
 });
-    // ✅ 배경 클릭 시 닫기
-overlay.addEventListener('click', (e) => {
-  if (e.target === overlay) {
-    const openPopup = overlay.querySelector('.popup:not([style*="display: none"])');
 
+// 배경 클릭 시 닫기
+overlay.addEventListener('click', (e) => {
+  if(e.target === overlay){
+    const openPopup = overlay.querySelector('.popup:not([style*="display: none"])');
     anime({
       targets: openPopup,
-      opacity: [1, 0],
-      scale: [1, 0.8],
+      opacity: [1,0],
+      scale: [1,0.8],
       duration: 300,
       easing: 'easeInQuad',
       complete: () => {
         overlay.style.display = 'none';
-
-        // 🎵 배경 클릭으로 닫힐 때도 노래 멈춤
         audio.pause();
         audio.currentTime = 0;
+        toMainBtn.style.display = 'block';
       }
     });
   }
-    });
+});
+      
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
