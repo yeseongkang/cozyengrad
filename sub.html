@@ -129,8 +129,9 @@
     }
 
     .close-btn img {
-  width: 250px;     /* 🔹 버튼 크기 (이미지 크기 조절) */
-  height: auto;    /* 비율 유지 */
+      width: 190px;     /* 🔹 버튼 크기 (이미지 크기 조절) */
+      height: auto;    /* 비율 유지 */
+      display: block;
   transition: transform 0.2s ease;
 }
 
@@ -139,13 +140,13 @@
 }
 
     .close-btn { 
-      position: absolute;
-      top: 0;        /* 👈 위쪽에 딱 붙게 */
-      right: 0;      /* 👈 오른쪽에 딱 붙게 */
+     position: absolute;
+      top: 0;       /* 위쪽 모서리에 딱 붙음 */
+      right: 0;     /* 오른쪽 모서리에 딱 붙음 */
       background: none;
       border: none;
       cursor: pointer;
-      padding: 0px; /* 버튼이 너무 구석에 안 눌리는 걸 방지 */
+      padding: 0;   /* 버튼 안쪽 여백 제거 */
       font-size: 1.2rem;
       color: #333;}
     
@@ -291,6 +292,7 @@ overlay.addEventListener('click', (e) => {
   </script>
 </body>
 </html>
+
 
 
 
