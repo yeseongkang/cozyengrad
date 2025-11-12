@@ -66,7 +66,7 @@
 
   .bottom-buttons .img-btn img {
     display: block;
-    width: 250px; /* 버튼 이미지 너비 */
+    width: 180px; /* 버튼 이미지 너비 */
     height: auto; /* 비율 유지 */
     object-fit: contain;
     transition: transform 0.2s ease;
@@ -91,7 +91,7 @@
     /* ✅ 팝업 본체 */
     .popup {
       background: rgba(255, 255, 255, 0);
-      width: 80%;
+      width: 90%;
       max-width: max-content;
       padding: 0px;
       
@@ -104,8 +104,9 @@
 
     .popup img {
       width: 100%;
-      border-radius: 10px;
-      margin-bottom: 20px;
+      height: 100%;
+      object-fit: cover; /* 이미지가 팝업 크기에 꽉 차되 잘릴 수 있음 */
+      border-radius: 15px;
     }
 
     .popup h3 {
@@ -128,7 +129,7 @@
     }
 
     .close-btn img {
-  width: 70px;     /* 🔹 버튼 크기 (이미지 크기 조절) */
+  width: 100px;     /* 🔹 버튼 크기 (이미지 크기 조절) */
   height: auto;    /* 비율 유지 */
   transition: transform 0.2s ease;
 }
@@ -280,3 +281,4 @@ overlay.addEventListener('click', (e) => {
   </script>
 </body>
 </html>
+
